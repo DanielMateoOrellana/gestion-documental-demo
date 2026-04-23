@@ -395,7 +395,7 @@ export function UserManagement({ currentUser }: UserManagementProps) {
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 onBlur={() => handleBlur('email')}
-                placeholder="usuario@fiec.espol.edu.ec"
+                placeholder="usuario@tuempresa.com"
                 className={cn(touched.email && formErrors.email && "border-destructive focus-visible:ring-destructive")}
               />
             </FormField>

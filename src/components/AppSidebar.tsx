@@ -6,6 +6,7 @@ import {
   FileText,
   List,
   FolderTree,
+  FileStack,
 } from "lucide-react";
 import {
   Sidebar,
@@ -20,7 +21,6 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import { User } from "../types";
-import logoEspol from "figma:asset/2793a7bad49c6296879d99578377c2b3f531f7e5.png";
 
 interface AppSidebarProps {
   currentView: string;
@@ -59,16 +59,14 @@ export function AppSidebar({
   return (
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border p-4">
-        <div className="flex flex-col gap-3">
-          <img
-            src={logoEspol}
-            alt="ESPOL Logo"
-            className="h-8 w-auto object-contain brightness-0 invert"
-          />
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+            <FileStack className="h-5 w-5" />
+          </div>
           <div>
-            <h2 className="text-sidebar-foreground">FIEC</h2>
+            <h2 className="text-sidebar-foreground">Tu Empresa</h2>
             <p className="text-xs text-sidebar-foreground/70">
-              Repositorio de Evidencias
+              Gestión Documental
             </p>
           </div>
         </div>

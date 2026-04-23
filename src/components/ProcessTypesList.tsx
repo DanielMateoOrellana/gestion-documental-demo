@@ -593,7 +593,7 @@ export function ProcessTypesList({
                     setCreateErrors(prev => ({ ...prev, name: undefined }));
                   }
                 }}
-                placeholder="Evaluación Docente"
+                placeholder="Revisión de Contratos"
                 className={cn(createErrors.name && "border-destructive")}
               />
             </FormField>
@@ -699,7 +699,7 @@ export function ProcessTypesList({
                     setEditErrors(prev => ({ ...prev, name: undefined }));
                   }
                 }}
-                placeholder="Evaluación Docente"
+                placeholder="Revisión de Contratos"
                 className={cn(editErrors.name && "border-destructive")}
               />
             </FormField>

@@ -8,7 +8,7 @@ import { ProcessTypesList } from './components/ProcessTypesList';
 import { FileExplorer } from './components/FileExplorer';
 import { Login } from './components/Login';
 import { AppSidebar } from './components/AppSidebar';
-import logoEspol from './assets/2793a7bad49c6296879d99578377c2b3f531f7e5.png'; // Ajusta si la ruta es diferente
+import { FileStack } from 'lucide-react';
 import { Toaster } from './components/ui/sonner';
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
 import { useAuth } from './auth/AuthContext';
@@ -155,13 +155,11 @@ export default function App() {
               <div className="flex items-center gap-2 sm:gap-3">
                 {/* Mobile Menu Button */}
                 <SidebarTrigger className="md:hidden" />
-                <img
-                  src={logoEspol}
-                  alt="ESPOL"
-                  className="h-5 sm:h-6 w-auto object-contain"
-                />
+                <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                  <FileStack className="h-4 w-4 sm:h-5 sm:w-5" />
+                </div>
                 <h2 className="text-muted-foreground text-sm sm:text-base truncate max-w-[150px] sm:max-w-none">
-                  Repositorio Institucional de Evidencias - FIEC
+                  Gestión Documental — Tu Empresa
                 </h2>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">

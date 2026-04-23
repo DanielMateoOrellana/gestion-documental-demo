@@ -304,7 +304,7 @@ export function EditTemplateModal({ open, onClose, templateId, onTemplateUpdated
                                     <Label htmlFor="templateName">Nombre de la plantilla *</Label>
                                     <Input
                                         id="templateName"
-                                        placeholder="Ej: Evaluación Docente Semestral"
+                                        placeholder="Ej: Revisión de Contratos"
                                         value={templateName}
                                         onChange={(e) => setTemplateName(e.target.value)}
                                     />

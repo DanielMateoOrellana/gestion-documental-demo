@@ -1,6 +1,6 @@
-# Gestion Documental FIEC Demo
+# Gestión Documental — Demo SaaS
 
-Demo frontend-only del Repositorio Institucional de Evidencias FIEC. La app no requiere backend, base de datos ni variables de entorno: los datos se simulan en el navegador con `localStorage`.
+Demo frontend-only de una plataforma SaaS de gestión documental. La app no requiere backend, base de datos ni variables de entorno: los datos se simulan en el navegador con `localStorage`.
 
 ## Ejecutar localmente
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Para generar el build de produccion:
+Para generar el build de producción:
 
 ```bash
 npm run build
@@ -21,20 +21,20 @@ Todas las cuentas usan la clave `demo123`.
 
 | Rol | Email |
 | --- | --- |
-| Administrador | `admin.demo@fiec.espol.edu.ec` |
-| Gestor | `gestor.demo@fiec.espol.edu.ec` |
-| Lector | `lector.demo@fiec.espol.edu.ec` |
-| Ayudante | `ayudante.demo@fiec.espol.edu.ec` |
+| Administrador | `admin.demo@tuempresa.com` |
+| Gestor | `gestor.demo@tuempresa.com` |
+| Lector | `lector.demo@tuempresa.com` |
+| Ayudante | `ayudante.demo@tuempresa.com` |
 
 ## Datos demo
 
-La informacion inicial incluye categorias, tipos de proceso, plantillas, expedientes, archivos simulados y bitacora. Los cambios se guardan en `localStorage`, por lo que se mantienen entre recargas del navegador.
+La información inicial incluye categorías, tipos de proceso, plantillas, expedientes, archivos simulados y bitácora (contratos, RR. HH. y finanzas). Los cambios se guardan en `localStorage`, por lo que se mantienen entre recargas del navegador.
 
 Para reiniciar los datos, borra la clave `gestion-documental-demo::state::v1` desde las herramientas de desarrollo del navegador.
 
 ## Deploy
 
-El proyecto esta listo para Vercel como app estatica de Vite:
+El proyecto está listo para Vercel como app estática de Vite:
 
 - `buildCommand`: `npm run build`
 - `outputDirectory`: `build`

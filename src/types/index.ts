@@ -1,4 +1,4 @@
-// Types based on FIEC database schema
+// Types based on database schema
 
 export enum UserRoleEnum {
   ADMINISTRADOR = 'ADMINISTRADOR',

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, FileStack } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card';
-import logoEspol from 'figma:asset/2793a7bad49c6296879d99578377c2b3f531f7e5.png';
 import { useAuth } from '../auth/AuthContext';
 
 interface LoginProps {
@@ -18,10 +17,10 @@ interface LoginProps {
 }
 
 const demoAccounts = [
-  { label: 'Admin', email: 'admin.demo@fiec.espol.edu.ec' },
-  { label: 'Gestor', email: 'gestor.demo@fiec.espol.edu.ec' },
-  { label: 'Lector', email: 'lector.demo@fiec.espol.edu.ec' },
-  { label: 'Ayudante', email: 'ayudante.demo@fiec.espol.edu.ec' },
+  { label: 'Admin', email: 'admin.demo@tuempresa.com' },
+  { label: 'Gestor', email: 'gestor.demo@tuempresa.com' },
+  { label: 'Lector', email: 'lector.demo@tuempresa.com' },
+  { label: 'Ayudante', email: 'ayudante.demo@tuempresa.com' },
 ];
 
 export function Login({ onSwitchToRegister }: LoginProps) {
@@ -60,17 +59,13 @@ export function Login({ onSwitchToRegister }: LoginProps) {
     <div className="min-h-screen flex items-center justify-center bg-secondary">
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto w-full max-w-sm flex items-center justify-center">
-            <img
-              src={logoEspol}
-              alt="ESPOL Logo"
-              className="w-full h-auto object-contain px-4"
-            />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+            <FileStack className="h-7 w-7" />
           </div>
           <div>
-            <CardTitle>Repositorio Institucional de Evidencias</CardTitle>
+            <CardTitle>Gestión Documental</CardTitle>
             <CardDescription>
-              FIEC - Facultad de Ingeniería en Electricidad y Computación
+              Plataforma SaaS para centralizar procesos y evidencias
             </CardDescription>
           </div>
           <div className="rounded-lg border bg-muted/40 p-3 text-left text-sm">
@@ -103,7 +98,7 @@ export function Login({ onSwitchToRegister }: LoginProps) {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="usuario@fiec.edu.ec"
+                  placeholder="usuario@tuempresa.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"

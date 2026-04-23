@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Lock, User2 } from 'lucide-react';
+import { Mail, Lock, User2, FileStack } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card';
-import logoEspol from 'figma:asset/2793a7bad49c6296879d99578377c2b3f531f7e5.png';
 import { useAuth } from '../auth/AuthContext';
 import { registerApi } from '../api/auth';
 
@@ -64,17 +63,13 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
     <div className="min-h-screen flex items-center justify-center bg-secondary">
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto w-full max-w-sm flex items-center justify-center">
-            <img
-              src={logoEspol}
-              alt="ESPOL Logo"
-              className="w-full h-auto object-contain px-4"
-            />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+            <FileStack className="h-7 w-7" />
           </div>
           <div>
             <CardTitle>Crear cuenta</CardTitle>
             <CardDescription>
-              Registre un usuario para acceder al Repositorio Institucional de Evidencias
+              Registre un usuario para acceder a la plataforma de gestión documental
             </CardDescription>
           </div>
         </CardHeader>
@@ -97,13 +92,13 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Correo institucional</Label>
+              <Label htmlFor="email">Correo electrónico</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="usuario@fiec.edu.ec"
+                  placeholder="usuario@tuempresa.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
