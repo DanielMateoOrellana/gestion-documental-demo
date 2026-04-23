@@ -30,7 +30,7 @@ Todas las cuentas usan la clave `demo123`.
 
 La información inicial incluye categorías, tipos de proceso, plantillas, expedientes, archivos simulados y bitácora (contratos, RR. HH. y finanzas). Los cambios se guardan en `localStorage`, por lo que se mantienen entre recargas del navegador.
 
-Para reiniciar los datos, borra la clave `gestion-documental-demo::state::v1` desde las herramientas de desarrollo del navegador.
+Para reiniciar los datos, borra la clave `gestion-documental-demo::state::v2` desde las herramientas de desarrollo del navegador.
 
 ## Deploy
 

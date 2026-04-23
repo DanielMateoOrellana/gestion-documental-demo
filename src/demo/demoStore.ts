@@ -169,7 +169,7 @@ type DemoState = {
 
 type DemoUserView = Omit<DemoUser, 'password'>;
 
-const STORAGE_KEY = 'gestion-documental-demo::state::v1';
+const STORAGE_KEY = 'gestion-documental-demo::state::v2';
 const DEFAULT_DELAY_MS = 120;
 const DEMO_TOKEN_PREFIX = 'demo-token-';
 const FALLBACK_IP = '127.0.0.1';
