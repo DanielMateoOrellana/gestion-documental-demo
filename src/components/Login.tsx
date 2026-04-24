@@ -65,9 +65,9 @@ export function Login({ onSwitchToRegister }: LoginProps) {
       <Card className="w-full max-w-md relative z-10 border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white/70 backdrop-blur-xl">
         <CardHeader className="space-y-6 text-center pb-8">
           <div className="mx-auto relative group mt-2">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl overflow-hidden shadow-xl bg-white border border-white/50">
-              <img src={logoExample} alt="Logo" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div className="relative flex h-36 w-36 sm:h-48 sm:w-48 p-4 items-center justify-center rounded-[2rem] shadow-xl bg-white border border-white/50">
+              <img src={logoExample} alt="Logo" className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" />
             </div>
           </div>
           <div className="space-y-2">
@@ -135,7 +135,7 @@ export function Login({ onSwitchToRegister }: LoginProps) {
               <p className="text-sm text-red-600 text-center">{error}</p>
             )}
 
-            <Button type="submit" className="w-full h-12 text-base font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5" disabled={submitting}>
+            <Button type="submit" className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5 bg-[#002f6c] hover:bg-[#001a40] text-white rounded-xl" disabled={submitting}>
               {submitting ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </Button>
 
