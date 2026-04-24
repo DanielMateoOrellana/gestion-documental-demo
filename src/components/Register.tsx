@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Lock, User2, FileStack } from 'lucide-react';
+import { Mail, Lock, User2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -12,6 +12,7 @@ import {
 } from './ui/card';
 import { useAuth } from '../auth/AuthContext';
 import { registerApi } from '../api/auth';
+import logoExample from '../assets/logo-example.jpg';
 
 interface RegisterProps {
   onSwitchToLogin: () => void;
@@ -63,8 +64,8 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
     <div className="min-h-screen flex items-center justify-center bg-secondary">
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <FileStack className="h-7 w-7" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl overflow-hidden">
+            <img src={logoExample} alt="Logo" className="w-full h-full object-cover" />
           </div>
           <div>
             <CardTitle>Crear cuenta</CardTitle>

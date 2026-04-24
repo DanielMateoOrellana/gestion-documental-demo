@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Lock, FileStack } from 'lucide-react';
+import { Mail, Lock } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from './ui/card';
 import { useAuth } from '../auth/AuthContext';
+import logoExample from '../assets/logo-example.jpg';
 
 interface LoginProps {
   onSwitchToRegister: () => void;
@@ -59,8 +60,8 @@ export function Login({ onSwitchToRegister }: LoginProps) {
     <div className="min-h-screen flex items-center justify-center bg-secondary">
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <FileStack className="h-7 w-7" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl overflow-hidden">
+            <img src={logoExample} alt="Logo" className="w-full h-full object-cover" />
           </div>
           <div>
             <CardTitle>Gestión Documental</CardTitle>

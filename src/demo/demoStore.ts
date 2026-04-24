@@ -328,7 +328,7 @@ function createInitialState(): DemoState {
     {
       id: 1,
       email: 'admin.demo@tuempresa.com',
-      fullName: 'Ana Administradora',
+      fullName: 'Usuario Administrador',
       password: 'demo123',
       role: UserRoleEnum.ADMINISTRADOR,
       isActive: true,

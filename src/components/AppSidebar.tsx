@@ -6,7 +6,6 @@ import {
   FileText,
   List,
   FolderTree,
-  FileStack,
 } from "lucide-react";
 import {
   Sidebar,
@@ -21,6 +20,7 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import { User } from "../types";
+import logoExample from '../assets/logo-example.jpg';
 
 interface AppSidebarProps {
   currentView: string;
@@ -60,8 +60,8 @@ export function AppSidebar({
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border p-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-            <FileStack className="h-5 w-5" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-md overflow-hidden bg-sidebar-primary">
+            <img src={logoExample} alt="Logo" className="w-full h-full object-cover" />
           </div>
           <div>
             <h2 className="text-sidebar-foreground">Tu Empresa</h2>
