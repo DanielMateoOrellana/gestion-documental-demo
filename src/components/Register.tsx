@@ -61,21 +61,28 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-secondary">
-      <Card className="w-full max-w-md mx-4">
-        <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl overflow-hidden">
-            <img src={logoExample} alt="Logo" className="w-full h-full object-cover" />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 relative overflow-hidden">
+      {/* Decorative background blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-200/50 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-200/50 blur-[100px] pointer-events-none" />
+      
+      <Card className="w-full max-w-md relative z-10 border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white/70 backdrop-blur-xl">
+        <CardHeader className="space-y-6 text-center pb-8">
+          <div className="mx-auto relative group mt-2">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl overflow-hidden shadow-xl bg-white border border-white/50">
+              <img src={logoExample} alt="Logo" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
           </div>
-          <div>
-            <CardTitle>Crear cuenta</CardTitle>
-            <CardDescription>
+          <div className="space-y-2">
+            <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-transparent">Crear cuenta</CardTitle>
+            <CardDescription className="text-base text-slate-500 font-medium">
               Registre un usuario para acceder a la plataforma de gestión documental
             </CardDescription>
           </div>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="fullName">Nombre completo</Label>
               <div className="relative">
@@ -86,7 +93,7 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
                   placeholder="Nombre Apellido"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
                   required
                 />
               </div>
@@ -102,7 +109,7 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
                   placeholder="usuario@tuempresa.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
                   required
                 />
               </div>
@@ -118,7 +125,7 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
                   required
                 />
               </div>
@@ -134,7 +141,7 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
                   required
                 />
               </div>
@@ -144,11 +151,11 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
               <p className="text-sm text-red-600 text-center">{error}</p>
             )}
 
-            <Button type="submit" className="w-full" disabled={submitting}>
+            <Button type="submit" className="w-full h-12 text-base font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5" disabled={submitting}>
               {submitting ? 'Creando cuenta...' : 'Registrarse'}
             </Button>
 
-            <p className="text-center text-xs text-muted-foreground mt-2">
+            <p className="text-center text-sm text-muted-foreground mt-4">
               ¿Ya tienes una cuenta?{' '}
               <button
                 type="button"
