@@ -57,7 +57,6 @@ export function Login({ onSwitchToRegister }: LoginProps) {
   };
 
   return (
-  return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div className="p-8 sm:p-10">
