@@ -1,15 +1,8 @@
 import { useState } from 'react';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, LogIn } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './ui/card';
 import { useAuth } from '../auth/AuthContext';
 import logoExample from '../assets/logo-example.jpg';
 
@@ -44,7 +37,6 @@ export function Login({ onSwitchToRegister }: LoginProps) {
     try {
       await login(email, password);
       window.history.pushState(null, '', window.location.href);
-
     } catch (err: any) {
       console.error('[Login] error', err);
       const msg =
@@ -57,99 +49,307 @@ export function Login({ onSwitchToRegister }: LoginProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <div className="p-8 sm:p-10">
-          
-          <div className="flex justify-center mb-6">
-            <img 
-              src={logoExample} 
-              alt="Logo" 
-              className="w-48 h-48 sm:w-56 sm:h-56 object-contain" 
-            />
-          </div>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)',
+        padding: '1rem',
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          maxWidth: '420px',
+          background: '#ffffff',
+          borderRadius: '16px',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Logo */}
+        <div style={{ padding: '40px 40px 0', textAlign: 'center' }}>
+          <img
+            src={logoExample}
+            alt="Logo"
+            style={{
+              width: '180px',
+              height: '180px',
+              objectFit: 'contain',
+              margin: '0 auto',
+              display: 'block',
+            }}
+          />
+        </div>
 
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">Gestión Documental</h1>
-            <p className="text-sm text-slate-500 mt-2">Plataforma SaaS para centralizar procesos</p>
-          </div>
+        {/* Header */}
+        <div style={{ padding: '16px 40px 0', textAlign: 'center' }}>
+          <h1
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 700,
+              color: '#0f172a',
+              margin: '0 0 4px',
+              letterSpacing: '-0.025em',
+            }}
+          >
+            Gestión Documental
+          </h1>
+          <p
+            style={{
+              fontSize: '0.875rem',
+              color: '#64748b',
+              margin: 0,
+            }}
+          >
+            Plataforma para centralizar procesos y evidencias
+          </p>
+        </div>
 
-          <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
-            <p className="text-sm font-semibold text-blue-900 mb-1">Modo demo sin backend</p>
-            <p className="text-xs text-blue-700 mb-3">
-              Selecciona una cuenta. Clave: <span className="font-mono bg-blue-100/50 px-1 py-0.5 rounded">demo123</span>
+        {/* Demo accounts */}
+        <div style={{ padding: '20px 40px 0' }}>
+          <div
+            style={{
+              background: '#eff6ff',
+              border: '1px solid #bfdbfe',
+              borderRadius: '12px',
+              padding: '14px',
+            }}
+          >
+            <p
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: '#1e3a5f',
+                margin: '0 0 4px',
+              }}
+            >
+              Modo demo
             </p>
-            <div className="grid grid-cols-2 gap-2">
+            <p
+              style={{
+                fontSize: '0.75rem',
+                color: '#3b82f6',
+                margin: '0 0 10px',
+              }}
+            >
+              Selecciona una cuenta · Clave:{' '}
+              <code
+                style={{
+                  background: '#dbeafe',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  fontSize: '0.75rem',
+                }}
+              >
+                demo123
+              </code>
+            </p>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '8px',
+              }}
+            >
               {demoAccounts.map((account) => (
                 <button
                   key={account.email}
                   type="button"
                   onClick={() => fillDemoCredentials(account.email)}
-                  className="px-3 py-2 text-xs font-medium bg-white border border-blue-200 text-blue-700 rounded-lg hover:bg-blue-50 transition-colors"
+                  style={{
+                    padding: '8px 12px',
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    background: '#ffffff',
+                    border: '1px solid #93c5fd',
+                    color: '#1d4ed8',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = '#dbeafe')
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = '#ffffff')
+                  }
                 >
                   {account.label}
                 </button>
               ))}
             </div>
           </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-slate-700">Correo electrónico</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="usuario@tuempresa.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-slate-700">Contraseña</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            {error && (
-              <p className="text-sm text-red-600 text-center bg-red-50 py-2 rounded-lg">{error}</p>
-            )}
-
-            <button 
-              type="submit" 
-              disabled={submitting}
-              className="w-full h-11 mt-2 rounded-lg bg-[#002f6c] hover:bg-[#001f4c] text-white font-medium shadow-sm transition-colors disabled:opacity-70"
-            >
-              {submitting ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-            </button>
-
-            <p className="text-center text-sm text-slate-500 pt-4">
-              ¿No tienes cuenta aún?{' '}
-              <button
-                type="button"
-                className="font-semibold text-[#002f6c] hover:underline"
-                onClick={onSwitchToRegister}
-              >
-                Regístrate
-              </button>
-            </p>
-          </form>
         </div>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          style={{ padding: '24px 40px 36px' }}
+        >
+          <div style={{ marginBottom: '16px' }}>
+            <Label
+              htmlFor="email"
+              style={{
+                display: 'block',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                color: '#334155',
+                marginBottom: '6px',
+              }}
+            >
+              Correo electrónico
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <Mail
+                style={{
+                  position: 'absolute',
+                  left: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '18px',
+                  height: '18px',
+                  color: '#94a3b8',
+                }}
+              />
+              <Input
+                id="email"
+                type="email"
+                placeholder="usuario@tuempresa.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                style={{
+                  paddingLeft: '40px',
+                  height: '44px',
+                  borderRadius: '10px',
+                  border: '1px solid #cbd5e1',
+                  width: '100%',
+                  fontSize: '0.875rem',
+                }}
+              />
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '20px' }}>
+            <Label
+              htmlFor="password"
+              style={{
+                display: 'block',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                color: '#334155',
+                marginBottom: '6px',
+              }}
+            >
+              Contraseña
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <Lock
+                style={{
+                  position: 'absolute',
+                  left: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '18px',
+                  height: '18px',
+                  color: '#94a3b8',
+                }}
+              />
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={{
+                  paddingLeft: '40px',
+                  height: '44px',
+                  borderRadius: '10px',
+                  border: '1px solid #cbd5e1',
+                  width: '100%',
+                  fontSize: '0.875rem',
+                }}
+              />
+            </div>
+          </div>
+
+          {error && (
+            <p
+              style={{
+                fontSize: '0.8125rem',
+                color: '#dc2626',
+                textAlign: 'center',
+                background: '#fef2f2',
+                padding: '8px',
+                borderRadius: '8px',
+                marginBottom: '16px',
+              }}
+            >
+              {error}
+            </p>
+          )}
+
+          {/* Submit button */}
+          <Button
+            type="submit"
+            disabled={submitting}
+            style={{
+              width: '100%',
+              height: '46px',
+              borderRadius: '10px',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              background: '#0f3460',
+              color: '#ffffff',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = '#0a2540')
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = '#0f3460')
+            }
+          >
+            <LogIn style={{ width: '18px', height: '18px' }} />
+            {submitting ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+          </Button>
+
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '0.8125rem',
+              color: '#64748b',
+              marginTop: '20px',
+            }}
+          >
+            ¿No tienes cuenta aún?{' '}
+            <button
+              type="button"
+              onClick={onSwitchToRegister}
+              style={{
+                fontWeight: 600,
+                color: '#0f3460',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                fontSize: '0.8125rem',
+              }}
+            >
+              Regístrate
+            </button>
+          </p>
+        </form>
       </div>
     </div>
   );

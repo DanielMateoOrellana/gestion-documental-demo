@@ -1,15 +1,8 @@
 import { useState } from 'react';
-import { Mail, Lock, User2 } from 'lucide-react';
+import { Mail, Lock, User2, UserPlus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './ui/card';
 import { useAuth } from '../auth/AuthContext';
 import { registerApi } from '../api/auth';
 import logoExample from '../assets/logo-example.jpg';
@@ -60,113 +53,243 @@ export function Register({ onSwitchToLogin }: RegisterProps) {
     }
   };
 
+  const inputStyle: React.CSSProperties = {
+    paddingLeft: '40px',
+    height: '44px',
+    borderRadius: '10px',
+    border: '1px solid #cbd5e1',
+    width: '100%',
+    fontSize: '0.875rem',
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#334155',
+    marginBottom: '6px',
+  };
+
+  const iconStyle: React.CSSProperties = {
+    position: 'absolute',
+    left: '12px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '18px',
+    height: '18px',
+    color: '#94a3b8',
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <div className="p-8 sm:p-10">
-          
-          <div className="flex justify-center mb-6">
-            <img 
-              src={logoExample} 
-              alt="Logo" 
-              className="w-48 h-48 sm:w-56 sm:h-56 object-contain" 
-            />
-          </div>
-
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">Crear cuenta</h1>
-            <p className="text-sm text-slate-500 mt-2">Registre un usuario para acceder a la plataforma</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="fullName" className="text-sm font-medium text-slate-700">Nombre completo</Label>
-              <div className="relative">
-                <User2 className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="fullName"
-                  type="text"
-                  placeholder="Nombre Apellido"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-slate-700">Correo electrónico</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="usuario@tuempresa.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-slate-700">Contraseña</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="text-sm font-medium text-slate-700">Confirmar contraseña</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="••••••••"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-            </div>
-
-            {error && (
-              <p className="text-sm text-red-600 text-center bg-red-50 py-2 rounded-lg">{error}</p>
-            )}
-
-            <button 
-              type="submit" 
-              disabled={submitting}
-              className="w-full h-11 mt-2 rounded-lg bg-[#002f6c] hover:bg-[#001f4c] text-white font-medium shadow-sm transition-colors disabled:opacity-70"
-            >
-              {submitting ? 'Creando cuenta...' : 'Registrarse'}
-            </button>
-
-            <p className="text-center text-sm text-slate-500 pt-4">
-              ¿Ya tienes una cuenta?{' '}
-              <button
-                type="button"
-                className="font-semibold text-[#002f6c] hover:underline"
-                onClick={onSwitchToLogin}
-              >
-                Inicia sesión
-              </button>
-            </p>
-          </form>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)',
+        padding: '1rem',
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          maxWidth: '420px',
+          background: '#ffffff',
+          borderRadius: '16px',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Logo */}
+        <div style={{ padding: '40px 40px 0', textAlign: 'center' }}>
+          <img
+            src={logoExample}
+            alt="Logo"
+            style={{
+              width: '140px',
+              height: '140px',
+              objectFit: 'contain',
+              margin: '0 auto',
+              display: 'block',
+            }}
+          />
         </div>
+
+        {/* Header */}
+        <div style={{ padding: '16px 40px 0', textAlign: 'center' }}>
+          <h1
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 700,
+              color: '#0f172a',
+              margin: '0 0 4px',
+              letterSpacing: '-0.025em',
+            }}
+          >
+            Crear cuenta
+          </h1>
+          <p
+            style={{
+              fontSize: '0.875rem',
+              color: '#64748b',
+              margin: 0,
+            }}
+          >
+            Registre un usuario para acceder a la plataforma
+          </p>
+        </div>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          style={{ padding: '24px 40px 36px' }}
+        >
+          <div style={{ marginBottom: '16px' }}>
+            <Label htmlFor="fullName" style={labelStyle}>
+              Nombre completo
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <User2 style={iconStyle} />
+              <Input
+                id="fullName"
+                type="text"
+                placeholder="Nombre Apellido"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <Label htmlFor="email" style={labelStyle}>
+              Correo electrónico
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <Mail style={iconStyle} />
+              <Input
+                id="email"
+                type="email"
+                placeholder="usuario@tuempresa.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <Label htmlFor="password" style={labelStyle}>
+              Contraseña
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <Lock style={iconStyle} />
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '20px' }}>
+            <Label htmlFor="confirmPassword" style={labelStyle}>
+              Confirmar contraseña
+            </Label>
+            <div style={{ position: 'relative' }}>
+              <Lock style={iconStyle} />
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          {error && (
+            <p
+              style={{
+                fontSize: '0.8125rem',
+                color: '#dc2626',
+                textAlign: 'center',
+                background: '#fef2f2',
+                padding: '8px',
+                borderRadius: '8px',
+                marginBottom: '16px',
+              }}
+            >
+              {error}
+            </p>
+          )}
+
+          {/* Submit button */}
+          <Button
+            type="submit"
+            disabled={submitting}
+            style={{
+              width: '100%',
+              height: '46px',
+              borderRadius: '10px',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              background: '#0f3460',
+              color: '#ffffff',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = '#0a2540')
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = '#0f3460')
+            }
+          >
+            <UserPlus style={{ width: '18px', height: '18px' }} />
+            {submitting ? 'Creando cuenta...' : 'Registrarse'}
+          </Button>
+
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '0.8125rem',
+              color: '#64748b',
+              marginTop: '20px',
+            }}
+          >
+            ¿Ya tienes una cuenta?{' '}
+            <button
+              type="button"
+              onClick={onSwitchToLogin}
+              style={{
+                fontWeight: 600,
+                color: '#0f3460',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                fontSize: '0.8125rem',
+              }}
+            >
+              Inicia sesión
+            </button>
+          </p>
+        </form>
       </div>
     </div>
   );
