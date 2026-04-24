@@ -57,101 +57,101 @@ export function Login({ onSwitchToRegister }: LoginProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 relative overflow-hidden">
-      {/* Decorative background blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-200/50 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-200/50 blur-[100px] pointer-events-none" />
-      
-      <Card className="w-full max-w-md relative z-10 border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white/70 backdrop-blur-xl">
-        <CardHeader className="space-y-6 text-center pb-8">
-          <div className="mx-auto relative group mt-2">
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            <div className="relative flex h-36 w-36 sm:h-48 sm:w-48 p-4 items-center justify-center rounded-[2rem] shadow-xl bg-white border border-white/50">
-              <img src={logoExample} alt="Logo" className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" />
-            </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="p-8 sm:p-10">
+          
+          <div className="flex justify-center mb-6">
+            <img 
+              src={logoExample} 
+              alt="Logo" 
+              className="w-48 h-48 sm:w-56 sm:h-56 object-contain" 
+            />
           </div>
-          <div className="space-y-2">
-            <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-transparent">Gestión Documental</CardTitle>
-            <CardDescription className="text-base text-slate-500 font-medium">
-              Plataforma SaaS para centralizar procesos y evidencias
-            </CardDescription>
+
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">Gestión Documental</h1>
+            <p className="text-sm text-slate-500 mt-2">Plataforma SaaS para centralizar procesos</p>
           </div>
-          <div className="rounded-xl border border-indigo-100 bg-indigo-50/50 p-4 text-left text-sm shadow-sm">
-            <p className="font-medium">Modo demo sin backend</p>
-            <p className="text-muted-foreground">
-              Selecciona una cuenta de prueba. Todas usan la clave{' '}
-              <span className="font-mono">demo123</span>.
+
+          <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+            <p className="text-sm font-semibold text-blue-900 mb-1">Modo demo sin backend</p>
+            <p className="text-xs text-blue-700 mb-3">
+              Selecciona una cuenta. Clave: <span className="font-mono bg-blue-100/50 px-1 py-0.5 rounded">demo123</span>
             </p>
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {demoAccounts.map((account) => (
-                <Button
+                <button
                   key={account.email}
                   type="button"
-                  variant="outline"
-                  size="sm"
                   onClick={() => fillDemoCredentials(account.email)}
-                  className="bg-white hover:bg-indigo-100 hover:text-indigo-900 border-indigo-200 transition-colors"
+                  className="px-3 py-2 text-xs font-medium bg-white border border-blue-200 text-blue-700 rounded-lg hover:bg-blue-50 transition-colors"
                 >
                   {account.label}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
-        </CardHeader>
-        <CardContent>
+
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">Correo electrónico</Label>
+              <Label htmlFor="email" className="text-sm font-medium text-slate-700">Correo electrónico</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <Input
                   id="email"
                   type="email"
                   placeholder="usuario@tuempresa.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
+                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="password">Contraseña</Label>
+              <Label htmlFor="password" className="text-sm font-medium text-slate-700">Contraseña</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <Input
                   id="password"
                   type="password"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-11 bg-white/80 focus:bg-white transition-colors"
+                  className="pl-10 h-11 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
             </div>
 
             {error && (
-              <p className="text-sm text-red-600 text-center">{error}</p>
+              <p className="text-sm text-red-600 text-center bg-red-50 py-2 rounded-lg">{error}</p>
             )}
 
-            <Button type="submit" className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5 bg-[#002f6c] hover:bg-[#001a40] text-white rounded-xl" disabled={submitting}>
+            <button 
+              type="submit" 
+              disabled={submitting}
+              className="w-full h-11 mt-2 rounded-lg bg-[#002f6c] hover:bg-[#001f4c] text-white font-medium shadow-sm transition-colors disabled:opacity-70"
+            >
               {submitting ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-            </Button>
+            </button>
 
-            <p className="text-center text-sm text-muted-foreground mt-4">
+            <p className="text-center text-sm text-slate-500 pt-4">
               ¿No tienes cuenta aún?{' '}
               <button
                 type="button"
-                className="text-primary underline"
+                className="font-semibold text-[#002f6c] hover:underline"
                 onClick={onSwitchToRegister}
               >
                 Regístrate
               </button>
             </p>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
